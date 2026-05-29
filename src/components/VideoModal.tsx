@@ -113,7 +113,7 @@ const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
                 <p className="text-sm text-muted-foreground">
                   You're browsing this site through the decentralized nsite.run gateway,
                   which keeps things censorship-resistant by blocking third-party embeds
-                  like YouTube. Open the video in a new tab to watch it safely at the source.
+                  like YouTube. Open the video in a new tab to watch it at the source.
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Prefer inline playback? Visit{" "}
