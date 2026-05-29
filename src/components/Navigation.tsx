@@ -5,7 +5,7 @@ import InfoModal from "./InfoModal";
 
 const Navigation = () => {
   const { isEditMode, setIsEditMode, clickCount, setClickCount, setShowInfoModal, showInfoModal } = useEditMode();
-  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const clickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({
