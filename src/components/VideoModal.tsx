@@ -13,15 +13,13 @@ interface VideoModalProps {
 const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
   const { toast } = useToast();
 
-  const isNsite =
-    typeof window !== "undefined" &&
-    window.location.hostname.endsWith(".nsite.run");
+  const isNsite = typeof window !== "undefined" && window.location.hostname.endsWith(".nsite.run");
 
   // Convert YouTube URLs to embed format with autoplay and timestamp
   const getEmbedUrl = (url: string) => {
     let embedUrl = "";
     let timestamp = "";
-    
+
     // Extract timestamp if present
     if (url.includes("t=")) {
       const timeMatch = url.match(/[?&]t=(\d+)/);
@@ -29,7 +27,7 @@ const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
         timestamp = `&start=${timeMatch[1]}`;
       }
     }
-    
+
     if (url.includes("youtube.com/watch?v=")) {
       const videoId = url.split("v=")[1]?.split("&")[0];
       embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1${timestamp}`;
@@ -39,31 +37,34 @@ const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
     } else {
       embedUrl = url; // Return as-is for other embed URLs
     }
-    
+
     return embedUrl;
   };
 
   const createSlug = (title: string) => {
     return title
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
       .trim();
   };
 
   const handleShare = async () => {
     const slug = createSlug(title);
-    
+
     // Store video data in localStorage with slug as key
-    localStorage.setItem(`video-${slug}`, JSON.stringify({
-      title,
-      videoUrl,
-      timestamp: Date.now()
-    }));
-    
+    localStorage.setItem(
+      `video-${slug}`,
+      JSON.stringify({
+        title,
+        videoUrl,
+        timestamp: Date.now(),
+      }),
+    );
+
     const shareUrl = `${window.location.origin}/video/${slug}`;
-    
+
     // Check if native sharing is available (mobile)
     if (navigator.share && /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       try {
@@ -111,9 +112,8 @@ const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
               <div className="space-y-2 max-w-md">
                 <h3 className="text-base font-semibold">Watch this video securely</h3>
                 <p className="text-sm text-muted-foreground">
-                  You're browsing this site through the decentralized nsite.run gateway,
-                  which keeps things censorship-resistant by blocking third-party embeds
-                  like YouTube. Open the video in a new tab to watch it at the source.
+                  You're browsing this site through a decentralized gateway, which keeps things censorship-resistant by
+                  blocking third-party embeds like YouTube. Open the video in a new tab to watch it at the source.
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Prefer inline playback? Visit{" "}
