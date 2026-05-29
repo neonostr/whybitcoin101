@@ -24,8 +24,17 @@ const stripJsx = (s) =>
   s
     .replace(/\{"\s+"\}/g, " ")
     .replace(/<[^>]+>/g, "")
-    .replace(/\s+/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/ *\n */g, "\n")
     .trim();
+
+// Normalize a section body: preserve paragraph breaks, collapse single newlines into one blank line.
+const normalizeParagraphs = (s) =>
+  s
+    .split(/\n{2,}/)
+    .map((p) => p.replace(/\s*\n\s*/g, " ").trim())
+    .filter(Boolean)
+    .join("\n\n");
 
 function extractBacktickConst(src, name) {
   const re = new RegExp("const\\s+" + name + "\\s*=\\s*`([\\s\\S]*?)`", "m");
@@ -71,7 +80,7 @@ for (const section of sections) {
 
   lines.push(`## ${section.title}`);
   lines.push("");
-  lines.push(stripJsx(body).replace(/\s*\n\s*/g, "\n\n"));
+  lines.push(normalizeParagraphs(stripJsx(body)));
   lines.push("");
 }
 
