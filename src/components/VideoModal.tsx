@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Share2 } from "lucide-react";
+import { Share2, ExternalLink, ShieldCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface VideoModalProps {
@@ -12,6 +12,10 @@ interface VideoModalProps {
 
 const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
   const { toast } = useToast();
+
+  const isNsite =
+    typeof window !== "undefined" &&
+    window.location.hostname.endsWith(".nsite.run");
 
   // Convert YouTube URLs to embed format with autoplay and timestamp
   const getEmbedUrl = (url: string) => {
@@ -101,12 +105,44 @@ const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
           </Button>
         </DialogHeader>
         <div className="aspect-video w-full">
-          <iframe
-            src={getEmbedUrl(videoUrl)}
-            className="w-full h-full rounded-lg"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          {isNsite ? (
+            <div className="w-full h-full rounded-lg border border-border bg-muted/30 flex flex-col items-center justify-center text-center p-6 gap-4">
+              <ShieldCheck className="h-10 w-10 text-primary" />
+              <div className="space-y-2 max-w-md">
+                <h3 className="text-base font-semibold">Watch this video securely</h3>
+                <p className="text-sm text-muted-foreground">
+                  You're browsing this site through the decentralized nsite.run gateway,
+                  which keeps things censorship-resistant by blocking third-party embeds
+                  like YouTube. Open the video in a new tab to watch it safely at the source.
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Prefer inline playback? Visit{" "}
+                  <a
+                    href="https://whybitcoin101.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2"
+                  >
+                    whybitcoin101.com
+                  </a>
+                  .
+                </p>
+              </div>
+              <Button asChild className="gap-2">
+                <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  Open video
+                </a>
+              </Button>
+            </div>
+          ) : (
+            <iframe
+              src={getEmbedUrl(videoUrl)}
+              className="w-full h-full rounded-lg"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          )}
         </div>
       </DialogContent>
     </Dialog>
