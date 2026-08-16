@@ -141,7 +141,7 @@ Ready to learn more? These carefully curated resources will guide you towards a 
   // Hardware Wallets
   const hardwareWallets = [{
     title: "Tangem - The Simplest Way To Start",
-    description: "Self-custody in three minutes. A Swiss-made, EAL6+ certified chip card that you simply tap to your phone to sign - no cables, no batteries, no seed phrase to write down. The backup cards are your recovery, making it the easiest first step into holding your own keys.",
+    description: "Self-custody in three minutes. A Swiss-made, EAL6+ certified chip card that you simply tap to your phone - no cables, no batteries, no backups to write down. The backup cards are your recovery, making it the easiest first step into holding your own keys.",
     type: "Beginner Friendly",
     url: "https://tangem.com"
   }, {
