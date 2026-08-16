@@ -24,7 +24,7 @@ Ready to learn more? These carefully curated resources will guide you towards a 
     title: "Bitcoin vs Crypto - Know the Difference",
     description: "Discover why Bitcoin stands alone. Learn its revolutionary origin story, the problems it uniquely solves, and why it's fundamentally different from all other cryptocurrencies.",
     type: "Essential",
-    url: "https://youtu.be/Q9athzFaFfc?t=83"
+    url: "https://www.youtube.com/watch?v=p0ftZgCEZos"
   }, {
     title: "The Broken Money System Exposed",
     description: "Eye-opening exploration of how our current monetary system creates inequality, enables endless money printing, and why society desperately needs a better alternative.",
