@@ -140,10 +140,10 @@ Ready to learn more? These carefully curated resources will guide you towards a 
 
   // Hardware Wallets
   const hardwareWallets = [{
-    title: "Coldcard - Fort Knox Security",
-    description: "The ultimate air-gapped Bitcoin security device. Features dual secure elements, NFC, QR scanning, and trick PINs. Never connects to computers, ensuring your Bitcoin stays completely offline and secure.",
-    type: "Ultra Secure",
-    url: "https://coldcard.com"
+    title: "Tangem - The Simplest Way To Start",
+    description: "Self-custody in three minutes. A Swiss-made, EAL6+ certified chip card that you simply tap to your phone to sign - no cables, no batteries, no seed phrase to write down. The backup cards are your recovery, making it the easiest first step into holding your own keys.",
+    type: "Beginner Friendly",
+    url: "https://tangem.com"
   }, {
     title: "Foundation Passport - Elegant Security",
     description: "Beautiful hardware security meets Bitcoin-only focus. Open-source design with camera-based airgapped transactions and an intuitive interface that makes self-custody accessible to everyone.",
