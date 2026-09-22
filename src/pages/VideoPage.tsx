@@ -10,53 +10,26 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import VideoModal from "@/components/VideoModal";
 import { EditModeProvider } from "@/contexts/EditModeContext";
+import { getVideoBySlug } from "@/data/videos";
 
 const VideoPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [sharedVideo, setSharedVideo] = useState<{
-    isOpen: boolean;
-    title: string;
-    url: string;
-  }>({
-    isOpen: false,
-    title: "",
-    url: ""
-  });
+  const video = getVideoBySlug(slug);
+  const [isOpen, setIsOpen] = useState(Boolean(video));
 
   useEffect(() => {
-    if (slug) {
-      // Try to get video data from localStorage
-      const videoData = localStorage.getItem(`video-${slug}`);
-      
-      if (videoData) {
-        try {
-          const parsed = JSON.parse(videoData);
-          
-          // Scroll to top
-          window.scrollTo(0, 0);
-          
-          // Open video modal with shared content
-          setSharedVideo({
-            isOpen: true,
-            title: parsed.title,
-            url: parsed.videoUrl
-          });
-        } catch (error) {
-          console.error('Error parsing video data:', error);
-          navigate('/');
-        }
-      } else {
-        // Video not found, redirect to homepage
-        navigate('/');
-      }
+    if (video) {
+      window.scrollTo(0, 0);
+      setIsOpen(true);
+    } else {
+      navigate("/", { replace: true });
     }
-  }, [slug, navigate]);
+  }, [video, navigate]);
 
   const handleCloseVideo = () => {
-    setSharedVideo({ isOpen: false, title: "", url: "" });
-    // Navigate back to homepage after closing
-    navigate('/');
+    setIsOpen(false);
+    navigate("/");
   };
 
   return (
@@ -70,12 +43,12 @@ const VideoPage = () => {
         <Resources />
         <FAQ />
         <Contact />
-        
-        <VideoModal 
-          isOpen={sharedVideo.isOpen} 
-          onClose={handleCloseVideo} 
-          title={sharedVideo.title} 
-          videoUrl={sharedVideo.url} 
+
+        <VideoModal
+          isOpen={isOpen && Boolean(video)}
+          onClose={handleCloseVideo}
+          title={video?.title ?? ""}
+          videoUrl={video?.url ?? ""}
         />
       </div>
     </EditModeProvider>

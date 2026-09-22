@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import VideoModal from "./VideoModal";
 import CopyButton from "./CopyButton";
 import ResourceCopyButton from "./ResourceCopyButton";
+import { videos } from "@/data/videos";
 const Resources = () => {
   const [videoModal, setVideoModal] = useState<{
     isOpen: boolean;
