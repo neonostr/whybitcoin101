@@ -37,14 +37,11 @@
 
   <body>
     <script>
-      // Set video data in localStorage and redirect to main page
-      localStorage.setItem('open-shared-video', JSON.stringify({
-        title: 'Inflation - The Silent Wealth Thief',
-        videoUrl: 'https://www.youtubetrimmer.com/view/?v=qfeMas1zU6Q&start=2327&end=2514&loop=0',
-        timestamp: Date.now()
-      }));
-      // Redirect to main page which will read this flag and open the video
-      window.location.replace('/');
+      // Hand the visitor to the app with the video identified in the URL (no local storage needed)
+      window.location.replace('/?v=inflation-the-silent-wealth-thief');
     </script>
+    <noscript>
+      <p><a href="/?v=inflation-the-silent-wealth-thief">Watch this video on WhyBitcoin101</a></p>
+    </noscript>
   </body>
 </html>

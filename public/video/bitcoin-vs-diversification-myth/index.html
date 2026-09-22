@@ -37,14 +37,11 @@
 
   <body>
     <script>
-      // Set video data in localStorage and redirect to main page
-      localStorage.setItem('open-shared-video', JSON.stringify({
-        title: 'Bitcoin vs Diversification Myth',
-        videoUrl: 'https://www.youtube.com/watch?v=kunaljk_Psc',
-        timestamp: Date.now()
-      }));
-      // Redirect to main page which will read this flag and open the video
-      window.location.replace('/');
+      // Hand the visitor to the app with the video identified in the URL (no local storage needed)
+      window.location.replace('/?v=bitcoin-vs-diversification-myth');
     </script>
+    <noscript>
+      <p><a href="/?v=bitcoin-vs-diversification-myth">Watch this video on WhyBitcoin101</a></p>
+    </noscript>
   </body>
 </html>

@@ -37,14 +37,11 @@
 
   <body>
     <script>
-      // Set video data in localStorage and redirect to main page
-      localStorage.setItem('open-shared-video', JSON.stringify({
-        title: 'Federal Reserve - The Greatest Lie',
-        videoUrl: 'https://v.nostr.build/tIA2DN77tAW2qNgT.mp4',
-        timestamp: Date.now()
-      }));
-      // Redirect to main page which will read this flag and open the video
-      window.location.replace('/');
+      // Hand the visitor to the app with the video identified in the URL (no local storage needed)
+      window.location.replace('/?v=federal-reserve-the-greatest-lie');
     </script>
+    <noscript>
+      <p><a href="/?v=federal-reserve-the-greatest-lie">Watch this video on WhyBitcoin101</a></p>
+    </noscript>
   </body>
 </html>

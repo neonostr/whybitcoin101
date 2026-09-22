@@ -53,16 +53,6 @@ const VideoModal = ({ isOpen, onClose, title, videoUrl }: VideoModalProps) => {
   const handleShare = async () => {
     const slug = createSlug(title);
 
-    // Store video data in localStorage with slug as key
-    localStorage.setItem(
-      `video-${slug}`,
-      JSON.stringify({
-        title,
-        videoUrl,
-        timestamp: Date.now(),
-      }),
-    );
-
     const shareUrl = `${window.location.origin}/video/${slug}`;
 
     // Check if native sharing is available (mobile)

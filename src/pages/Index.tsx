@@ -9,6 +9,7 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import VideoModal from "@/components/VideoModal";
 import { EditModeProvider } from "@/contexts/EditModeContext";
+import { getVideoBySlug } from "@/data/videos";
 
 const Index = () => {
   const [sharedVideo, setSharedVideo] = useState<{
@@ -22,7 +23,21 @@ const Index = () => {
   });
 
   useEffect(() => {
-    // Check for shared video flag from static HTML redirects
+    // Shared video slug passed in the URL by the static /video/<slug> pages
+    const slugParam = new URLSearchParams(window.location.search).get('v');
+    const slugVideo = getVideoBySlug(slugParam ?? undefined);
+
+    if (slugVideo) {
+      window.scrollTo(0, 0);
+      setSharedVideo({
+        isOpen: true,
+        title: slugVideo.title,
+        url: slugVideo.url
+      });
+      return;
+    }
+
+    // Check for shared video flag from static HTML redirects (legacy)
     const sharedVideoData = localStorage.getItem('open-shared-video');
     
     if (sharedVideoData) {
