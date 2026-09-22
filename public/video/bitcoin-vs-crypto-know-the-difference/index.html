@@ -37,14 +37,11 @@
 
   <body>
     <script>
-      // Set video data in localStorage and redirect to main page
-      localStorage.setItem('open-shared-video', JSON.stringify({
-        title: 'Bitcoin vs Crypto - Know the Difference',
-        videoUrl: 'https://www.youtube.com/watch?v=p0ftZgCEZos',
-        timestamp: Date.now()
-      }));
-      // Redirect to main page which will read this flag and open the video
-      window.location.replace('/');
+      // Hand the visitor to the app with the video identified in the URL (no local storage needed)
+      window.location.replace('/?v=bitcoin-vs-crypto-know-the-difference');
     </script>
+    <noscript>
+      <p><a href="/?v=bitcoin-vs-crypto-know-the-difference">Watch this video on WhyBitcoin101</a></p>
+    </noscript>
   </body>
 </html>
