@@ -123,10 +123,10 @@ const NostrContributors = () => {
   return (
     <Card className="border-primary/20 mb-6">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-foreground">
+        <h2 className="text-2xl font-semibold leading-none tracking-tight text-foreground flex items-center gap-2">
           <Heart className="h-5 w-5" />
           Thank You To Our Contributors
-        </CardTitle>
+        </h2>
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground leading-relaxed mb-6">
@@ -149,7 +149,7 @@ const NostrContributors = () => {
                   {profile.picture ? (
                     <img
                       src={profile.picture}
-                      alt={profile.display_name || profile.name || 'Profile'}
+                      alt={`Profile photo of ${profile.display_name || profile.name || 'a Nostr contributor'}`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = `https://robohash.org/${profile.npub}?size=64x64`;
@@ -158,7 +158,7 @@ const NostrContributors = () => {
                   ) : (
                     <img
                       src={`https://robohash.org/${profile.npub}?size=64x64`}
-                      alt={profile.display_name || profile.name || 'Profile'}
+                      alt={`Profile photo of ${profile.display_name || profile.name || 'a Nostr contributor'}`}
                       className="w-full h-full object-cover"
                     />
                   )}

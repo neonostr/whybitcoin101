@@ -312,7 +312,7 @@ const QuestionFollow = () => {
           <img 
             key={index}
             src={url} 
-            alt="GIF" 
+            alt="Animated GIF shared in a reply to this Bitcoin question" 
             className="max-w-full h-auto rounded-lg mt-2 max-h-96 object-contain"
             loading="lazy"
           />
@@ -324,7 +324,7 @@ const QuestionFollow = () => {
           <img 
             key={index}
             src={url} 
-            alt="Shared image" 
+            alt="Image shared in a reply to this Bitcoin question" 
             className="max-w-full h-auto rounded-lg mt-2 max-h-96 object-contain"
             loading="lazy"
           />
@@ -612,7 +612,7 @@ const QuestionFollow = () => {
         <Card className="mb-8 border-primary/20">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg text-foreground">Your Question</CardTitle>
+              <h2 className="text-lg font-semibold leading-none tracking-tight text-foreground">Your Question</h2>
               <Badge variant="secondary">Original Post</Badge>
             </div>
           </CardHeader>
