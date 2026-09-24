@@ -710,7 +710,7 @@ const BaseLayers = () => {
             <div className="flex items-center gap-2 mb-2">
               <img
                 src={profile?.picture || `https://robohash.org/${quotedEvent.pubkey}?set=set4&size=21x21`}
-                alt="Author"
+                alt={`Profile photo of ${getUserDisplayName(quotedEvent.pubkey)}`}
                 className="w-10 h-10 rounded-full flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-primary"
                 onClick={() => openNostrProfile(quotedEvent.pubkey)}
               />
@@ -750,7 +750,7 @@ const BaseLayers = () => {
             <Quote className="h-4 w-4 text-primary flex-shrink-0" />
             <img
               src={profile?.picture || `https://robohash.org/${quotedEvent.pubkey}?set=set4&size=21x21`}
-              alt="Quoted author"
+              alt={`Profile photo of ${getUserDisplayName(quotedEvent.pubkey)}, quoted author`}
               className="w-10 h-10 rounded-full flex-shrink-0 cursor-pointer hover:ring-2 hover:ring-primary"
               onClick={() => openNostrProfile(quotedEvent.pubkey)}
             />
@@ -813,7 +813,7 @@ const BaseLayers = () => {
         <img 
           key={match[1]} 
           src={match[1]} 
-          alt="Shared content" 
+          alt="Image shared in a #whybitcoin101 note on Nostr" 
           className="w-full h-auto object-contain rounded-lg mt-2 max-h-96"
           loading="lazy"
         />
@@ -981,28 +981,28 @@ const BaseLayers = () => {
             
             <Dialog open={infoDialogOpen} onOpenChange={setInfoDialogOpen}>
               <DialogTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                <Button variant="ghost" size="sm" aria-label="About the Live Pulse" className="text-muted-foreground hover:text-foreground">
                   <Info className="h-4 w-4" />
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[500px]">
                  <div className="space-y-4 text-sm">
                   <div>
-                    <h4 className="font-medium mb-2">The Pulse</h4>
+                    <h2 className="font-medium mb-2">The Pulse</h2>
                     <p className="text-muted-foreground">
                       The Pulse is a living, real time hive mind around Bitcoin. Every note tagged with <strong>#whybitcoin101</strong> that shows why Bitcoin matters or offers broader insight into Bitcoin flows here through the decentralized Nostr network.
                       Together, they form a collective stream of Bitcoin culture, knowledge, and education.
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-medium mb-2">How It Can Be Used</h4>
+                    <h2 className="font-medium mb-2">How It Can Be Used</h2>
                     <p className="text-muted-foreground">
                       The Pulse is more than a feed - it's our inspiration layer. Browse through it to discover new angles, remix sparks, or paste parts (or even the whole stream) into AI
                       and explore what new creations emerge. Each piece adds to a shared pool of imagination with endless possibilities.
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-medium mb-2">How To Contribute</h4>
+                    <h2 className="font-medium mb-2">How To Contribute</h2>
                     <p className="text-muted-foreground">
                     Post from any Nostr client (like Primal, Damus, or Amethyst), include the hashtag <strong>#whybitcoin101</strong>, and your spark becomes part of the Pulse. Each spark is fuel - it might inspire someone, somewhere, to explain why Bitcoin matters in a clearer way, sharpening our collective orange pill. That's how we wake up the world to Bitcoin's importance.
                     </p>
@@ -1194,7 +1194,7 @@ const BaseLayers = () => {
                     {showAuthors && !isStandaloneQuote && (
                       <img
                         src={profile?.picture || `https://robohash.org/${event.pubkey}?set=set4&size=21x21`}
-                        alt="Profile"
+                        alt={`Profile photo of ${getUserDisplayName(event.pubkey)}`}
                         className="w-10 h-10 rounded-full cursor-pointer hover:ring-2 hover:ring-primary flex-shrink-0"
                         onClick={() => openNostrProfile(event.pubkey)}
                       />
