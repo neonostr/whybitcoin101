@@ -823,21 +823,22 @@ const BaseLayers = () => {
 
     // Extract and render videos
     while ((match = videoRegex.exec(content)) !== null) {
+      const videoUrl = match[1];
       mediaElements.push(
         <video 
-          key={match[1]} 
-          src={match[1]} 
+          key={videoUrl} 
+          src={videoUrl} 
           controls 
           preload="metadata"
           className="w-full max-w-full max-h-96 rounded-lg mt-2"
           onError={(e) => {
-            console.error('Video failed to load:', match[1]);
-            // Try to display as a link if video fails to load
+            // Show a link instead if the video fails to load
             const target = e.target as HTMLVideoElement;
             const linkElement = document.createElement('a');
-            linkElement.href = match[1];
-            linkElement.textContent = `Video: ${match[1]}`;
+            linkElement.href = videoUrl;
+            linkElement.textContent = `Video: ${videoUrl}`;
             linkElement.target = '_blank';
+            linkElement.rel = 'noopener noreferrer';
             linkElement.className = 'text-primary hover:underline';
             target.parentNode?.replaceChild(linkElement, target);
           }}
